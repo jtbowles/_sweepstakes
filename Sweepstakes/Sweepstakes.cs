@@ -9,9 +9,9 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         Dictionary<int, Contestant> registeredContestants;
-        int runningNumberOfContestants;
-        int numberOfContestantsToGenerate;
-        string name;
+        public int runningNumberOfContestants;
+        public int numberOfContestantsToGenerate;
+        public string name;
 
         public Sweepstakes(string name)
         {
@@ -26,7 +26,7 @@ namespace Sweepstakes
             registeredContestants.Add(contestant.RegistrationNumber, contestant);
         }
 
-        public Contestant PickWinner()
+        public void /*Contestant*/ PickWinner()
         {
 
         }
@@ -52,7 +52,13 @@ namespace Sweepstakes
             {
                 Contestant contestant = CreateContestant();
                 RegisterContestant(contestant);
+                PrintContestantInfo(contestant);
             }
+        }
+
+        public void ChangeNumberOfContestantsToGenerate(int numberToChange)
+        {
+            numberOfContestantsToGenerate = numberToChange;
         }
     }
 }

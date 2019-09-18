@@ -9,31 +9,91 @@ namespace Sweepstakes
     public class MarketingFirm
     {
         ISweepstakesManager manager;
+        public bool inFirmMenu;
+        public bool inSweepstakesMenu;
 
         public MarketingFirm(ISweepstakesManager manager)
         {
             this.manager = manager;
+            inFirmMenu = false;
+            inSweepstakesMenu = false;
         }
 
         public void RunFirmMenu()
         {
             UI.DisplaySweepstakesType(manager);
+            inFirmMenu = true;
 
-            int userInput = UI.DisplayMarketingFirmMenu();
-
-            switch (userInput)
+            while (inFirmMenu)
             {
-                case 1:
-                    // Create a new Sweepstakes
-                    // SweepstakesMenu
-                    break;
+                int userInput = UI.DisplayMarketingFirmMenu();
 
-                case 2:
-                    // Find a Sweepstakes
-                    break;
+                switch (userInput)
+                {
+                    case 1:
+                        string nameOfSweepstakes = UI.SetNameOfSweepstakes();
+                        Sweepstakes sweepstakes = new Sweepstakes(nameOfSweepstakes);
+                        RunSweepstakesMenu(sweepstakes);
+                        break;
 
-                default:
-                    break;
+                    case 2:
+                        // Find a Sweepstakes
+                        break;
+
+                    case 3:
+                        inFirmMenu = false;
+                        break;
+
+                    default:
+                        RunFirmMenu();
+                        break;
+                }
+            }
+        }
+
+        public void RunSweepstakesMenu(Sweepstakes sweepstakes)
+        {
+            inSweepstakesMenu = true;
+
+            while (inSweepstakesMenu) 
+            {
+                int userInput = UI.DisplaySweepstakesMenu(sweepstakes);
+
+                switch (userInput)
+                {
+                    case 1:
+                        UI.DisplayNumberOfRegisteredContestants(sweepstakes);
+                        break;
+
+                    case 2:
+                        string yesNo = UI.SetNumberOfContestantsToGenerate(sweepstakes);
+
+                        if(yesNo == "yes")
+                        {
+                            int numToChange = UI.ChangeNumberOfContestantsToGenerate(sweepstakes);
+                            sweepstakes.ChangeNumberOfContestantsToGenerate(numToChange);
+                        }
+                        UI.DisplayCurrentContestantsToRegister(sweepstakes);
+                        break;
+
+                    case 3:
+                        sweepstakes.GenerateContestants();
+                        break;
+
+                    case 4:
+                        // pick a winner
+                        break;
+
+                    case 5:
+                        inSweepstakesMenu = false;
+                        // exit
+                        // check
+                        break;
+
+                    default:
+                        RunSweepstakesMenu(sweepstakes);
+                        break;
+                }
             }
         }
     }

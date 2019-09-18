@@ -35,5 +35,44 @@ namespace Sweepstakes
             int userInput = Convert.ToInt32(Console.ReadLine());
             return userInput;
         }
+
+        public static void DisplayRegisteredContestantInfo(Contestant contestant)
+        {
+            Console.Clear();
+            Console.WriteLine("   Registered Contestant # {0} ", contestant.RegistrationNumber);
+            Console.WriteLine("  ------------------------------------");
+            Console.WriteLine("   Full name: {0} {1}", contestant.FirstName, contestant.LastName);
+            Console.WriteLine("   Email: {0}", contestant.EmailAddress);
+            Console.WriteLine("  ------------------------------------");
+            Console.ReadLine();
+
+        }
+
+        public static string SetContestantFirstName()
+        {
+            Console.Clear();
+            Console.WriteLine("   Enter the contestant's first name: ");
+            Console.WriteLine("  ------------------------------------");
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        public static string SetContestantLastName()
+        {
+            Console.Clear();
+            Console.WriteLine("   Enter the contestant's last name: ");
+            Console.WriteLine("  ------------------------------------");
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        public static string SetContestantEmailAddress()
+        {
+            Console.Clear();
+            Console.WriteLine("   Enter the contestant's email address: ");
+            Console.WriteLine("  ---------------------------------------");
+            string userInput = Console.ReadLine();
+            return userInput;
+        }
     }
 }

@@ -8,7 +8,19 @@ namespace Sweepstakes
 {
     public class StackManager : ISweepstakesManager
     {
-        Stack<Sweepstakes> db = new Stack<Sweepstakes>();
+        public string name;
+        public Stack<Sweepstakes> db;
+
+        public StackManager()
+        {
+            name = "Stack";
+            db = new Stack<Sweepstakes>();
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
 
         public Sweepstakes GetSweepstakes()
         {

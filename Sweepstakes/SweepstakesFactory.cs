@@ -8,7 +8,6 @@ namespace Sweepstakes
 {
     public class SweepstakesFactory 
     {
-
         public ISweepstakesManager SetSweepstakesDataStructure()
         {
             string userInput = UI.SelectSweepstakesType();

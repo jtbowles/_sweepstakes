@@ -8,7 +8,19 @@ namespace Sweepstakes
 {
     public class QueueManager : ISweepstakesManager
     {
-        Queue<Sweepstakes> db = new Queue<Sweepstakes>();
+        public string name;
+        public Queue<Sweepstakes> db;
+
+        public QueueManager()
+        {
+            name = "Queue";
+            db = new Queue<Sweepstakes>();
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
 
         public Sweepstakes GetSweepstakes()
         {

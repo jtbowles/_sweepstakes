@@ -9,7 +9,22 @@ namespace Sweepstakes
     public class SweepstakesFactory 
     {
 
+        public ISweepstakesManager SetSweepstakesDataStructure()
+        {
+            string userInput = UI.SelectSweepstakesType();
 
+            switch (userInput)
+            {
+                case "stack":
+                    return new StackManager();
+
+                case "queue":
+                    return new QueueManager();
+
+                default:
+                    return SetSweepstakesDataStructure();
+            }
+        }
 
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    public abstract class UI
+    public static class UI
     {
-        public string SelectSweepstakesType()
+        public static string SelectSweepstakesType()
         {
             Console.Clear();
             Console.WriteLine("   Would you like to store your sweepstakes in a stack or queue?");

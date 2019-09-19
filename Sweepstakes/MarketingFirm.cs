@@ -37,7 +37,16 @@ namespace Sweepstakes
                         break;
 
                     case 2:
-                        // Find a Sweepstakes
+                        bool containsItems = manager.GetCount();
+                        if (containsItems)
+                        {
+                            Sweepstakes returnedSweepstakes = manager.GetSweepstakes();
+                            UI.DisplayPastSweepstakes(returnedSweepstakes);
+                        }
+                        else
+                        {
+                            UI.DisplayNoSweepstakesStored();
+                        }
                         break;
 
                     case 3:
@@ -82,7 +91,6 @@ namespace Sweepstakes
 
                     case 4:
                         PickSweepstakesWinner(sweepstakes);
-                        inSweepstakesMenu = false;
                         break;
 
                     default:
@@ -104,6 +112,7 @@ namespace Sweepstakes
 
             manager.InsertSweepstakes(sweepstakes);
             UI.DisplayWinnerOfSweepstakes(sweepstakes);
+            inSweepstakesMenu = false;
         }
     }
 }

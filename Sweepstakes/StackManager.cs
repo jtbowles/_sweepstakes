@@ -17,6 +17,18 @@ namespace Sweepstakes
             db = new Stack<Sweepstakes>();
         }
 
+        public bool GetCount()
+        {
+            if (db.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public string GetName()
         {
             return name;
@@ -24,7 +36,7 @@ namespace Sweepstakes
 
         public Sweepstakes GetSweepstakes()
         {
-            throw new NotImplementedException();
+            return db.Pop();
         }
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)

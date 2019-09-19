@@ -18,12 +18,31 @@ namespace Sweepstakes
             return userInput;
         }
 
+        public static void DisplayPastSweepstakes(Sweepstakes sweepstakes)
+        {
+            Console.Clear();
+            Console.WriteLine("   {0} sweepstakes  | Winner: {1} {2}", sweepstakes.name, sweepstakes.winningContestant.FirstName, sweepstakes.winningContestant.LastName);
+            Console.WriteLine("  -------------------------------------------------------------------");
+            Console.WriteLine("                     press [enter] to continue");
+            Console.ReadLine();
+        }
+
         public static void DisplaySweepstakesType(ISweepstakesManager manager)
         {
             Console.Clear();
             Console.WriteLine("   Currently using a {0} manager to store our sweepstakes", manager.GetName());
             Console.WriteLine("  ---------------------------------------------------------");
             Console.WriteLine("                  press [enter] to continue");
+        }
+
+        public static void DisplayNoSweepstakesStored()
+        {
+            Console.Clear();
+            Console.WriteLine("     No past sweepstakes to display!");
+            Console.WriteLine("   Must create a new sweepstakes first!");
+            Console.WriteLine("  --------------------------------------");
+            Console.WriteLine("        press [enter] to continue");
+            Console.ReadLine();
         }
 
         public static int DisplayMarketingFirmMenu()

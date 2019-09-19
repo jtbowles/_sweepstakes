@@ -11,5 +11,6 @@ namespace Sweepstakes
         string GetName();
         void InsertSweepstakes(Sweepstakes sweepstakes);
         Sweepstakes GetSweepstakes();
+        bool GetCount();
     }
 }

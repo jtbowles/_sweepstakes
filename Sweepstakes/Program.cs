@@ -11,7 +11,8 @@ namespace Sweepstakes
         static void Main(string[] args)
         {
             SweepstakesFactory factory = new SweepstakesFactory();
-            ISweepstakesManager manager = factory.SetSweepstakesDataStructure();
+            string userInput = UI.SelectSweepstakesType();
+            ISweepstakesManager manager = factory.SetSweepstakesDataStructure(userInput);
 
             MarketingFirm marketingFirm = new MarketingFirm(manager);
             marketingFirm.RunFirmMenu();

@@ -8,10 +8,8 @@ namespace Sweepstakes
 {
     public class SweepstakesFactory 
     {
-        public ISweepstakesManager SetSweepstakesDataStructure()
+        public ISweepstakesManager SetSweepstakesDataStructure(string userInput)
         {
-            string userInput = UI.SelectSweepstakesType();
-
             switch (userInput)
             {
                 case "stack":
@@ -21,9 +19,8 @@ namespace Sweepstakes
                     return new QueueManager();
 
                 default:
-                    return SetSweepstakesDataStructure();
+                    return SetSweepstakesDataStructure(userInput);
             }
         }
-
     }
 }

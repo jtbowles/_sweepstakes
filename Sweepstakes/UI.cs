@@ -43,10 +43,10 @@ namespace Sweepstakes
         public static void DisplaySweepstakesType(ISweepstakesManager manager)
         {
             Console.Clear();
-            Console.WriteLine("  --------------------------------------------------------------");
-            Console.WriteLine("   Currently using a {0} database to store our sweepstakes", manager.GetName());
-            Console.WriteLine("  --------------------------------------------------------------");
-            Console.WriteLine("                   press [enter] to continue");
+            Console.WriteLine("  ------------------------------------------------------------------");
+            Console.WriteLine("   Currently using a {0} data structure to store our sweepstakes", manager.GetName());
+            Console.WriteLine("  ------------------------------------------------------------------");
+            Console.WriteLine("                    press [enter] to continue");
             Console.ReadLine();
         }
 
@@ -71,8 +71,25 @@ namespace Sweepstakes
             Console.WriteLine("   enter [2] to view a past sweepstakes");
             Console.WriteLine("   enter [3] to quit");
             Console.WriteLine("  -------------------------------------");
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            return userInput;
+
+            try
+            {
+                int userInput = Convert.ToInt32(Console.ReadLine());
+                return userInput;
+            }
+            catch (Exception e)
+            {
+                Console.Clear();
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("  " + e.Message);
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("     please enter a valid response");
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("        press [enter] to continue");
+                Console.ReadLine();
+                Console.Clear();
+                return DisplayMarketingFirmMenu();
+            }
         }
 
         public static int DisplaySweepstakesMenu(string name)
@@ -86,8 +103,25 @@ namespace Sweepstakes
             Console.WriteLine("   enter [3] generate contestants");
             Console.WriteLine("   enter [4] to pick a winner");
             Console.WriteLine("  ----------------------------------------");
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            return userInput;
+
+            try
+            {
+                int userInput = Convert.ToInt32(Console.ReadLine());
+                return userInput;
+            }
+            catch (Exception e)
+            {
+                Console.Clear();
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("  " + e.Message);
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("     please enter a valid response");
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("        press [enter] to continue");
+                Console.ReadLine();
+                Console.Clear();
+                return DisplaySweepstakesMenu(name);
+            }
         }
 
         public static bool GetNotificationResponse()
@@ -128,8 +162,25 @@ namespace Sweepstakes
             Console.WriteLine("  --------------------------------------------------------");
             Console.WriteLine("   enter the [number] of contestants you want to generate");
             Console.WriteLine("  --------------------------------------------------------");
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            return userInput;
+
+            try
+            {
+                int userInput = Convert.ToInt32(Console.ReadLine());
+                return userInput;
+            }
+            catch (Exception e)
+            {
+                Console.Clear();
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("  " + e.Message);
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("     please enter a valid response");
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("        press [enter] to continue");
+                Console.ReadLine();
+                Console.Clear();
+                return ChangeNumberOfContestantsToGenerate();
+            }
         }
 
         public static void DisplayContestantsNotGenerated()

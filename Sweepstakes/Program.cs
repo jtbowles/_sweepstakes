@@ -15,7 +15,7 @@ namespace Sweepstakes
             ISweepstakesManager manager = factory.SetSweepstakesDataStructure(userInput);
 
             MarketingFirm marketingFirm = new MarketingFirm(manager);
-            marketingFirm.RunFirmMenu();
+            marketingFirm.StartProgram();
         }
     }
 }

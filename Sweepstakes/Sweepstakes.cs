@@ -8,21 +8,18 @@ namespace Sweepstakes
 {
     public class Sweepstakes
     {
-        Dictionary<int, Contestant> registeredContestants;
-        public Contestant winningContestant;
-        public int runningNumberOfContestants;
-        public int numberOfContestantsToGenerate;
+        Dictionary<int, Contestant> registeredContestants = new Dictionary<int, Contestant>();
+        List<IParticipant> participants = new List<IParticipant>();
+        public IParticipant winner = null;
+        public Contestant winningContestant = null;
+        public int runningNumberOfContestants = 0;
+        public int numberOfContestantsToGenerate = 5;
         public string name;
-        public bool inSweepstakesMenu;
+        public bool inSweepstakesMenu = false;
 
         public Sweepstakes(string name)
         {
             this.name = name;
-            registeredContestants = new Dictionary<int, Contestant>();
-            winningContestant = null;
-            runningNumberOfContestants = 0;
-            numberOfContestantsToGenerate = 5;
-            inSweepstakesMenu = false;
         }
 
         public void RegisterContestant(Contestant contestant)
@@ -32,14 +29,10 @@ namespace Sweepstakes
 
         public Contestant PickWinner()
         {
-
-
             Random random = new Random();
             int winningNumber = random.Next(1, runningNumberOfContestants);
             return registeredContestants[winningNumber];
         }
-
-        
 
         public void PrintContestantInfo(Contestant contestant)
         {
@@ -66,9 +59,49 @@ namespace Sweepstakes
             }
         }
 
-        public void ChangeNumberOfContestantsToGenerate(int numberToChange)
+        public void Subscribe(IParticipant participant)
         {
-            numberOfContestantsToGenerate = numberToChange;
+            participants.Add(participant);
+        }
+
+        public void NotifyParticipants()
+        {
+            foreach (IParticipant participant in participants)
+            {
+                participant.Notify(winner);
+            }
+        }
+
+        public void GenerateParticipants()
+        {
+            IParticipant participant;
+
+            for (int i = 1; i <= registeredContestants.Count; i++)
+            {
+                if(registeredContestants[i] == winningContestant)
+                {
+                    string name = registeredContestants[i].FirstName + " " + registeredContestants[i].LastName;
+                    participant = new Winner(name);
+                    winner = participant;
+                }
+                else
+                {
+                    participant = new Participant(registeredContestants[i].FirstName);
+
+                }
+                Subscribe(participant);
+            }
+        }
+
+        public void NotifyParticipantsPrompt()
+        {
+            bool yesNo = UI.GetNotificationResponse();
+
+            if (yesNo)
+            {
+                GenerateParticipants();
+                NotifyParticipants();
+            }
         }
 
         public void RunSweepstakesMenu(int sweepCase)
@@ -104,6 +137,7 @@ namespace Sweepstakes
                     {
                         winningContestant = PickWinner();
                         UI.DisplayWinnerOfSweepstakes(name, winningContestant);
+                        NotifyParticipantsPrompt();
                         inSweepstakesMenu = false;
                     }
                     break;

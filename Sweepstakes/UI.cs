@@ -30,8 +30,8 @@ namespace Sweepstakes
         public static void DisplaySweepstakesType(ISweepstakesManager manager)
         {
             Console.Clear();
-            Console.WriteLine("   Currently using a {0} manager to store our sweepstakes", manager.GetName());
-            Console.WriteLine("  ---------------------------------------------------------");
+            Console.WriteLine("   Currently using a {0} database to store our sweepstakes", manager.GetName());
+            Console.WriteLine("  ------------------------------------------------------------");
             Console.WriteLine("                  press [enter] to continue");
         }
 
@@ -70,6 +70,32 @@ namespace Sweepstakes
             return userInput;
         }
 
+        public static bool GetNotificationResponse()
+        {
+            Console.Clear();
+            Console.WriteLine("   Would you like to notify the participants of the Winner?");
+            Console.WriteLine("  ---------------------------------------------------------");
+            Console.WriteLine("                 enter [yes] or [no]");
+            try
+            {
+                string userInput = Console.ReadLine().ToLower();
+                if(userInput == "yes")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return GetNotificationResponse();
+            }
+        }
+
         public static void DisplayCurrentContestantsToRegister(int numberOfContestantsToGenerate)
         {
             Console.Clear();
@@ -103,6 +129,15 @@ namespace Sweepstakes
             Console.WriteLine("   Winner of the {0} sweepstakes", name);
             Console.WriteLine("  --------------------------------------");
             Console.WriteLine("   Congratulations to {0} {1}!", winner.FirstName, winner.LastName);
+            Console.ReadLine();
+        }
+
+        public static void DisplayWinnerNotPicked()
+        {
+            Console.Clear();
+            Console.WriteLine("   Winner must be picked prior to notifying contestants!");
+            Console.WriteLine("  -------------------------------------------------------");
+            Console.WriteLine("                 press [enter] to return");
             Console.ReadLine();
         }
 

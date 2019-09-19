@@ -9,6 +9,7 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         Dictionary<int, Contestant> registeredContestants;
+        public Contestant winningContestant;
         public int runningNumberOfContestants;
         public int numberOfContestantsToGenerate;
         public string name;
@@ -17,6 +18,7 @@ namespace Sweepstakes
         {
             this.name = name;
             registeredContestants = new Dictionary<int, Contestant>();
+            winningContestant = null;
             runningNumberOfContestants = 0;
             numberOfContestantsToGenerate = 5;
         }

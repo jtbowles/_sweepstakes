@@ -79,12 +79,12 @@ namespace Sweepstakes
             Console.ReadLine();
         }
 
-        public static void DisplayWinnerOfSweepstakes(Sweepstakes sweepstakes, Contestant contestant)
+        public static void DisplayWinnerOfSweepstakes(Sweepstakes sweepstakes)
         {
             Console.Clear();
             Console.WriteLine("   Winner of the {0} sweepstakes", sweepstakes.name);
             Console.WriteLine("  --------------------------------------");
-            Console.WriteLine("   Congratulations to {0} {1}! ");
+            Console.WriteLine("   Congratulations to {0} {1}!", sweepstakes.winningContestant.FirstName, sweepstakes.winningContestant.LastName);
             Console.ReadLine();
         }
 

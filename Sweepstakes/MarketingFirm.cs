@@ -81,13 +81,8 @@ namespace Sweepstakes
                         break;
 
                     case 4:
-                        // pick a winner
-                        break;
-
-                    case 5:
+                        PickSweepstakesWinner(sweepstakes);
                         inSweepstakesMenu = false;
-                        // exit
-                        // check
                         break;
 
                     default:
@@ -105,8 +100,10 @@ namespace Sweepstakes
                 return;
             }
 
-            Contestant sweepstakesWinner = sweepstakes.PickWinner();
+            sweepstakes.winningContestant = sweepstakes.PickWinner();
 
+            manager.InsertSweepstakes(sweepstakes);
+            UI.DisplayWinnerOfSweepstakes(sweepstakes);
         }
     }
 }

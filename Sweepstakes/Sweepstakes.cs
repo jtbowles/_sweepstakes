@@ -13,6 +13,7 @@ namespace Sweepstakes
         public int runningNumberOfContestants;
         public int numberOfContestantsToGenerate;
         public string name;
+        public bool inSweepstakesMenu;
 
         public Sweepstakes(string name)
         {
@@ -21,6 +22,7 @@ namespace Sweepstakes
             winningContestant = null;
             runningNumberOfContestants = 0;
             numberOfContestantsToGenerate = 5;
+            inSweepstakesMenu = false;
         }
 
         public void RegisterContestant(Contestant contestant)
@@ -30,10 +32,14 @@ namespace Sweepstakes
 
         public Contestant PickWinner()
         {
+
+
             Random random = new Random();
             int winningNumber = random.Next(1, runningNumberOfContestants);
             return registeredContestants[winningNumber];
         }
+
+        
 
         public void PrintContestantInfo(Contestant contestant)
         {
@@ -63,6 +69,48 @@ namespace Sweepstakes
         public void ChangeNumberOfContestantsToGenerate(int numberToChange)
         {
             numberOfContestantsToGenerate = numberToChange;
+        }
+
+        public void RunSweepstakesMenu(int sweepCase)
+        {
+            switch (sweepCase)
+            {
+                case 1:
+                    UI.DisplayNumberOfRegisteredContestants(runningNumberOfContestants);
+                    break;
+
+                case 2:
+                    string yesNo = UI.SetNumberOfContestantsToGenerate(numberOfContestantsToGenerate);
+
+                    if (yesNo == "yes")
+                    {
+                        int numToChange = UI.ChangeNumberOfContestantsToGenerate();
+                        numberOfContestantsToGenerate = numToChange;
+                    }
+                    UI.DisplayCurrentContestantsToRegister(numberOfContestantsToGenerate);
+                    break;
+
+                case 3:
+                    GenerateContestants();
+                    break;
+
+                case 4:
+                    if (runningNumberOfContestants == 0)
+                    {
+                        UI.DisplayContestantsNotGenerated();
+                        return;
+                    }
+                    else
+                    {
+                        winningContestant = PickWinner();
+                        UI.DisplayWinnerOfSweepstakes(name, winningContestant);
+                        inSweepstakesMenu = false;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

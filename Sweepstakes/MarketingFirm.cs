@@ -33,7 +33,12 @@ namespace Sweepstakes
                     case 1:
                         string nameOfSweepstakes = UI.SetNameOfSweepstakes();
                         Sweepstakes sweepstakes = new Sweepstakes(nameOfSweepstakes);
-                        RunSweepstakesMenu(sweepstakes);
+                        sweepstakes.inSweepstakesMenu = true;
+                        while (sweepstakes.inSweepstakesMenu)
+                        {
+                            sweepstakes.RunSweepstakesMenu(UI.DisplaySweepstakesMenu(sweepstakes.name));
+                        }
+                        manager.InsertSweepstakes(sweepstakes);
                         break;
 
                     case 2:
@@ -58,61 +63,6 @@ namespace Sweepstakes
                         break;
                 }
             }
-        }
-
-        public void RunSweepstakesMenu(Sweepstakes sweepstakes)
-        {
-            inSweepstakesMenu = true;
-
-            while (inSweepstakesMenu) 
-            {
-                int userInput = UI.DisplaySweepstakesMenu(sweepstakes);
-
-                switch (userInput)
-                {
-                    case 1:
-                        UI.DisplayNumberOfRegisteredContestants(sweepstakes);
-                        break;
-
-                    case 2:
-                        string yesNo = UI.SetNumberOfContestantsToGenerate(sweepstakes);
-
-                        if(yesNo == "yes")
-                        {
-                            int numToChange = UI.ChangeNumberOfContestantsToGenerate(sweepstakes);
-                            sweepstakes.ChangeNumberOfContestantsToGenerate(numToChange);
-                        }
-                        UI.DisplayCurrentContestantsToRegister(sweepstakes);
-                        break;
-
-                    case 3:
-                        sweepstakes.GenerateContestants();
-                        break;
-
-                    case 4:
-                        PickSweepstakesWinner(sweepstakes);
-                        break;
-
-                    default:
-                        RunSweepstakesMenu(sweepstakes);
-                        break;
-                }
-            }
-        }
-
-        public void PickSweepstakesWinner(Sweepstakes sweepstakes)
-        {
-            if(sweepstakes.runningNumberOfContestants == 0)
-            {
-                UI.DisplayContestantsNotGenerated();
-                return;
-            }
-
-            sweepstakes.winningContestant = sweepstakes.PickWinner();
-
-            manager.InsertSweepstakes(sweepstakes);
-            UI.DisplayWinnerOfSweepstakes(sweepstakes);
-            inSweepstakesMenu = false;
         }
     }
 }

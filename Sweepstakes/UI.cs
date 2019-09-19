@@ -57,30 +57,29 @@ namespace Sweepstakes
             return userInput;
         }
 
-        public static int DisplaySweepstakesMenu(Sweepstakes sweepstakes)
+        public static int DisplaySweepstakesMenu(string name)
         {
             Console.Clear();
-            Console.WriteLine("   Welcome to the {0} sweepstakes", sweepstakes.name);
+            Console.WriteLine("   Welcome to the {0} sweepstakes", name);
             Console.WriteLine("  --------------------------------------");
             Console.WriteLine("   enter [1] check the number of registered contestants");
             Console.WriteLine("   enter [2] change the number of contestants to register");
             Console.WriteLine("   enter [3] generate contestants");
             Console.WriteLine("   enter [4] to pick a winner");
-            Console.WriteLine("   enter [5] to quit");
             int userInput = Convert.ToInt32(Console.ReadLine());
             return userInput;
         }
 
-        public static void DisplayCurrentContestantsToRegister(Sweepstakes sweepstakes)
+        public static void DisplayCurrentContestantsToRegister(int numberOfContestantsToGenerate)
         {
             Console.Clear();
-            Console.WriteLine("   New number of contestants to register: {0}", sweepstakes.numberOfContestantsToGenerate);
+            Console.WriteLine("   New number of contestants to register: {0}", numberOfContestantsToGenerate);
             Console.WriteLine("  --------------------------------------------");
             Console.WriteLine("         press [enter] to continue");
             Console.ReadLine();
         }
 
-        public static int ChangeNumberOfContestantsToGenerate(Sweepstakes sweepstakes)
+        public static int ChangeNumberOfContestantsToGenerate()
         {
             Console.Clear();
             Console.WriteLine("   enter the [number] of contestants you want to generate");
@@ -98,27 +97,27 @@ namespace Sweepstakes
             Console.ReadLine();
         }
 
-        public static void DisplayWinnerOfSweepstakes(Sweepstakes sweepstakes)
+        public static void DisplayWinnerOfSweepstakes(string name, Contestant winner)
         {
             Console.Clear();
-            Console.WriteLine("   Winner of the {0} sweepstakes", sweepstakes.name);
+            Console.WriteLine("   Winner of the {0} sweepstakes", name);
             Console.WriteLine("  --------------------------------------");
-            Console.WriteLine("   Congratulations to {0} {1}!", sweepstakes.winningContestant.FirstName, sweepstakes.winningContestant.LastName);
+            Console.WriteLine("   Congratulations to {0} {1}!", winner.FirstName, winner.LastName);
             Console.ReadLine();
         }
 
-        public static void DisplayNumberOfRegisteredContestants(Sweepstakes sweepstakes)
+        public static void DisplayNumberOfRegisteredContestants(int numOfContestants)
         {
             Console.Clear();
-            Console.WriteLine("   Total number of registered contestants:  {0}", sweepstakes.runningNumberOfContestants);
+            Console.WriteLine("   Total number of registered contestants:  {0}", numOfContestants);
             Console.WriteLine("  ----------------------------------------------");
             Console.ReadLine();
         }
 
-        public static string SetNumberOfContestantsToGenerate(Sweepstakes sweepstakes)
+        public static string SetNumberOfContestantsToGenerate(int numberOfContestantsToGenerate)
         {
             Console.Clear();
-            Console.WriteLine("   Number of contestants to register: {0}", sweepstakes.numberOfContestantsToGenerate);
+            Console.WriteLine("   Number of contestants to register: {0}", numberOfContestantsToGenerate);
             Console.WriteLine("  -----------------------------------------");
             Console.WriteLine("    would you like to change this number?");
             Console.WriteLine("           enter [yes] or [no]");

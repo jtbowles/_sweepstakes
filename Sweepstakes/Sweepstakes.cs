@@ -26,9 +26,11 @@ namespace Sweepstakes
             registeredContestants.Add(contestant.RegistrationNumber, contestant);
         }
 
-        public void /*Contestant*/ PickWinner()
+        public Contestant PickWinner()
         {
-
+            Random random = new Random();
+            int winningNumber = random.Next(1, runningNumberOfContestants);
+            return registeredContestants[winningNumber];
         }
 
         public void PrintContestantInfo(Contestant contestant)

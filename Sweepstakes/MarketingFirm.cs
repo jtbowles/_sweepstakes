@@ -96,5 +96,17 @@ namespace Sweepstakes
                 }
             }
         }
+
+        public void PickSweepstakesWinner(Sweepstakes sweepstakes)
+        {
+            if(sweepstakes.runningNumberOfContestants == 0)
+            {
+                UI.DisplayContestantsNotGenerated();
+                return;
+            }
+
+            Contestant sweepstakesWinner = sweepstakes.PickWinner();
+
+        }
     }
 }

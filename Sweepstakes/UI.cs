@@ -70,6 +70,24 @@ namespace Sweepstakes
             return userInput;
         }
 
+        public static void DisplayContestantsNotGenerated()
+        {
+            Console.Clear();
+            Console.WriteLine("   Must register contestants before picking a winner!");
+            Console.WriteLine("  ----------------------------------------------------");
+            Console.WriteLine("               press [enter] to return");
+            Console.ReadLine();
+        }
+
+        public static void DisplayWinnerOfSweepstakes(Sweepstakes sweepstakes, Contestant contestant)
+        {
+            Console.Clear();
+            Console.WriteLine("   Winner of the {0} sweepstakes", sweepstakes.name);
+            Console.WriteLine("  --------------------------------------");
+            Console.WriteLine("   Congratulations to {0} {1}! ");
+            Console.ReadLine();
+        }
+
         public static void DisplayNumberOfRegisteredContestants(Sweepstakes sweepstakes)
         {
             Console.Clear();

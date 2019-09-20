@@ -30,6 +30,21 @@ namespace Sweepstakes
             }
         }
 
+        public static void DisplayWinnerNotification(IParticipant participant)
+        {
+            Console.Clear();
+            Console.WriteLine("Congratulations {0}, you won!", participant.Name);
+            Console.ReadLine();
+        }
+
+        public static void DisplayParticipantNotification(IParticipant participant, string name)
+        {
+            Console.Clear();
+            Console.WriteLine("   Our winner is: {0}", participant.Name);
+            Console.WriteLine("   Thanks for playing {0}!", name);
+            Console.ReadLine();
+        }
+
         public static void DisplayPastSweepstakes(Sweepstakes sweepstakes)
         {
             Console.Clear();

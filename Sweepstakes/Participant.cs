@@ -17,10 +17,7 @@ namespace Sweepstakes
 
         public void Notify(IParticipant participant)
         {
-            Console.Clear();
-            Console.WriteLine("   Our winner is: {0}", participant.Name);
-            Console.WriteLine("   Thanks for playing {0}!", Name);
-            Console.ReadLine();
+            UI.DisplayParticipantNotification(participant, Name);
         }
     }
 }
